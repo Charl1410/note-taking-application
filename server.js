@@ -20,7 +20,7 @@ res.send(path.join(__dirname, '/public/index.html'))
 
 //GET route to serve notes page 
 app.get('/notes', (req, res) =>
-res.send(path.join(__dirname, '/public/notes.html'))
+res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
  
 
