@@ -31,29 +31,33 @@ app.get('/api/notes', (req, res) => {
   res.status(200).json(notes);
 });
 
-//post request to add a new note
-// app.post('/api/notes', (req, res => {
-//   console.info(`${req.method} request received to add a review`);
+// post request to add a new note
+app.post('/api/notes', (req, res) => {
+  console.info(`${req.method} request received to add a note`);
+//destructuring the request body and creating an object 
+  const {title, text} = req.body;
 
-//   const {title, text} = req.body;
+  if (title && text) {
 
-//   if (title && text) {
-
-//     const newNote = {
-//       title,
-//       text
-//     };
+    const newNote = {
+      title,
+      text,
+      note_id: uuid(),
+    };
   
-//   const response = {
-//     status: 'success',
-//     body: newNote,
-//   };
+  const response = {
+    status: 'success',
+    body: newNote,
+  };
 
-//   console.log(response);
+  console.log(response);
+  res.status(201).json(response);
+} else {
+  res.status(500).json('Error in posting review');
 
-//   } 
+}
 
-// }))
+});
 
  
 
