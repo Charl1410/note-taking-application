@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const uuid = require('./helpers/uuid')
+const notes = require('./db/db.json')
 
 //setting up port 
 const PORT = process.env.PORT || 3001;
@@ -24,20 +25,35 @@ app.get('/notes', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
+//this serves the saved notes to the html 
+app.get('/api/notes', (req, res) => {
+  //returning the reviews in json format from the db 
+  res.status(200).json(notes);
+});
+
 //post request to add a new note
-app.post('/api/notes', (req, res => {
-  console.info(`${req.method} request received to add a review`);
-  const {title, text } = req.body;
+// app.post('/api/notes', (req, res => {
+//   console.info(`${req.method} request received to add a review`);
 
-  if (title && text) {
+//   const {title, text} = req.body;
 
-    const newNote = {
-      title,
-      text
-    }
-  }
+//   if (title && text) {
+
+//     const newNote = {
+//       title,
+//       text
+//     };
   
-}))
+//   const response = {
+//     status: 'success',
+//     body: newNote,
+//   };
+
+//   console.log(response);
+
+//   } 
+
+// }))
 
  
 
