@@ -1,7 +1,1 @@
-
-[
-    {
-        "title":"Test note",
-        "text":"Test text"
-    }
-]
+[{"title":"Test note","text":"Test text"},{"title":"hello","text":"work please","note_id":"983f"}]

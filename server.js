@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const uuid = require('./helpers/uuid')
 const notes = require('./db/db.json')
+const fs = require('fs')
 
 //setting up port 
 const PORT = process.env.PORT || 3001;
@@ -55,11 +56,16 @@ app.post('/api/notes', (req, res) => {
       //pushes the new review into the existing data object 
       parsedNotes.push(newNote);
 
-      //writing the new updates data back to the file 
+      //writing the new updates data back to the file and stringify
       fs.writeFile('./db/db.json',
-      JSON.stringify(parsedNotes, ))
+      JSON.stringify(parsedNotes),
+      (err) =>
+      err
+      ? console.error(err)
+      : console.info('note has been added to database')
+      );
     }
-  }
+  });
   
   
   const response = {
