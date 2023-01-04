@@ -36,7 +36,7 @@ app.post('/api/notes', (req, res) => {
   console.info(`${req.method} request received to add a note`);
 //destructuring the request body and creating an object 
   const {title, text} = req.body;
-
+  //if both entries have been entered then creates new object containing data
   if (title && text) {
 
     const newNote = {
@@ -44,12 +44,30 @@ app.post('/api/notes', (req, res) => {
       text,
       note_id: uuid(),
     };
+
+  //reading in the existing data from the database 
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      //converted the string into a javascript json object 
+      const parsedNotes = JSON.parse(data);
+      //pushes the new review into the existing data object 
+      parsedNotes.push(newNote);
+
+      //writing the new updates data back to the file 
+      fs.writeFile('./db/db.json',
+      JSON.stringify(parsedNotes, ))
+    }
+  }
+  
   
   const response = {
     status: 'success',
     body: newNote,
   };
 
+//this will log the new response that will be posted (if successful)
   console.log(response);
   res.status(201).json(response);
 } else {
