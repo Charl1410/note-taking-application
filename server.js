@@ -32,7 +32,7 @@ app.get('/api/notes', (req, res) => {
   res.status(200).json(notes);
 });
 
-// post request to add a new note
+// post request to add a new note @/api/notes 
 app.post('/api/notes', (req, res) => {
   console.info(`${req.method} request received to add a note`);
 //destructuring the request body and creating an object 
@@ -43,7 +43,7 @@ app.post('/api/notes', (req, res) => {
     const newNote = {
       title,
       text,
-      note_id: uuid(),
+      id: uuid(),
     };
 
   //reading in the existing data from the database 
@@ -82,6 +82,27 @@ app.post('/api/notes', (req, res) => {
 }
 
 });
+
+
+app.delete('/api/notes/:id', (req, res) => {
+  console.info(`${req.params.id} request received to delete a note`);
+  
+  //grab the data notes from db.json (notes)
+  
+  //filter through notes to find id 
+  // words.filter(word => word.length > 6);
+  const filterNotes = notes.filter(note => note.id !== req.params.id);
+  console.info(filterNotes);
+
+  fs.writeFile('./db/db.json',
+      JSON.stringify(filterNotes),
+      (err) =>
+      err
+      ? console.error(err)
+      : console.info('note has been deleted from the database')
+      );
+    }
+);
 
  
 
