@@ -77,18 +77,23 @@ const handleNoteSave = () => {
   });
 };
 
-// Delete the clicked note
+// Delete the clicked note 
+//something isn't working here 
 const handleNoteDelete = (e) => {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
   const note = e.target;
+  //this is saving the ID from the note that is targetted and saving to noteID var 
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+
+  console.log(note)
+  console.log(noteId)
 
   if (activeNote.id === noteId) {
     activeNote = {};
   }
-
+//passing in the note 
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
