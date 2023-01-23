@@ -28,8 +28,19 @@ res.sendFile(path.join(__dirname, '/public/notes.html'))
 
 //this serves the saved notes to the html 
 app.get('/api/notes', (req, res) => {
-  //returning the reviews in json format from the db 
-  res.status(200).json(notes);
+  //reading in the db file 
+  fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+    console.info('read from file ')
+    if(err) {
+      console.log(err);
+    }
+     else {
+      console.info('ready to res data')
+      res.status(200).json(data);
+
+    }
+    
+  })
 });
 
 // post request to add a new note @/api/notes 
