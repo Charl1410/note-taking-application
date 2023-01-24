@@ -25,9 +25,9 @@ To use this application all dependencies must be installed. To run the applciati
 
 
 ## Screenshots
-![]()
-![]()
-![]()
+![](https://github.com/Charl1410/note-taking-application/blob/27b39e1b643154a62e21f850186342c2144c8618/screenshots/Screenshot%202023-01-24%20at%2016.40.38.png)
+![](https://github.com/Charl1410/note-taking-application/blob/27b39e1b643154a62e21f850186342c2144c8618/screenshots/Screenshot%202023-01-24%20at%2016.40.44.png)
+![](https://github.com/Charl1410/note-taking-application/blob/27b39e1b643154a62e21f850186342c2144c8618/screenshots/Screenshot%202023-01-24%20at%2016.41.18.png)
 
 
 
