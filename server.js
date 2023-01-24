@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const uuid = require('./helpers/uuid')
-const notes = require('./db/db.json')
 const fs = require('fs')
 
 //setting up port 
@@ -26,21 +25,19 @@ app.get('/notes', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-//this serves the saved notes to the html 
-app.get('/api/notes', (req, res) => {
-  //reading in the db file 
-  fs.readFile('./db/db.json', 'utf-8', (err, data) => {
-    console.info('read from file ')
-    if(err) {
-      console.log(err);
-    }
-     else {
-      console.info('ready to res data')
-      res.status(200).json(data);
+app.get("/api/notes", (req, res) => {
 
-    }
-    
-  })
+  console.info(`${req.method} req recieved to get notes`)
+  //returning the reviews in json format from the db
+  fs.readFile("./db/db.json", (err, data) => {
+    if (err) {
+      console.log(err)
+        } else {
+          const parsedNotes = JSON.parse(data)
+      
+      res.status(200).json(parsedNotes);
+     }
+  });
 });
 
 // post request to add a new note @/api/notes 
@@ -98,11 +95,17 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
   console.info(`${req.params.id} request received to delete a note`);
   
-  //grab the data notes from db.json (notes)
-  
+  //read in data from databse
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+  //else 
+
+  //convert the string into a js json object 
   //filter through notes to find id 
-  // words.filter(word => word.length > 6);
-  const filterNotes = notes.filter(note => note.id !== req.params.id);
+  const parsedNotes = JSON.parse(data)
+  const filterNotes = parsedNotes.filter(note => note.id !== req.params.id);
   console.info(filterNotes);
 
   fs.writeFile('./db/db.json',
@@ -113,7 +116,15 @@ app.delete('/api/notes/:id', (req, res) => {
       : console.info('note has been deleted from the database')
       );
     }
-);
+    
+  });
+  
+  const response = {
+    status: 'success',
+    body: 'note was deleted',
+  };
+  res.status(201).json(response)
+  });
 
  
 
