@@ -25,6 +25,11 @@ To use this application all dependencies must be installed. To run the applciati
 
 
 ## Screenshots
+![]()
+![]()
+![]()
+
+
 
 
 
