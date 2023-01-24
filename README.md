@@ -7,7 +7,7 @@
   * [Screenshots](#Screenshots)
   * [Usage](#Usage)
   * [Deployment](#Deployment)
-  * [Licence](#License)
+  * [License](#License)
 
 ## Description
 As small business owner I want to be able to write and save notes so that I can organize my thoughts and keep track of tasks I need to complete. This back-end note taking application has been built using node.js with express. The application allows user to create, delete and manage notes in a database. 
@@ -35,5 +35,5 @@ This application has been deployed through Heroku. To access please visit: <br>
 https://note-taker-express.herokuapp.com/notes
 
 
-## Licence 
-This project was not licenced.
+## License 
+This project was not licensed.
