@@ -1,4 +1,4 @@
-# 11 Express note taking application
+# Express note taking application
 
 ## Table of contents
 
